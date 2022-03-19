@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>background</title>
+        <style>
+            body{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(to right, red , blue);
+            }
+            button{
+                cursor: pointer;
+                background: none;
+                font-weight: bold;
+                border: none;
+                font-size: large;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            input{
+                border: none;
+                background:none;
+                width: 60px;
+            }
+            div{
+                text-align: center;
+            }
+            p{
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <h1>Change Background <br> <button id="button">click here</button></h1>
+        </div>
+        <div id="color_div">
+            <input type="color" name="color1" id="color1">
+            <input type="color" name="color2" id="color2">
+        </div>
+        <script>
+            var color1 = document.getElementById("color1");
+            var color2 = document.getElementById("color2");
+            var body = document.querySelector("body");
+            var button = document.getElementById("button");
+            var color_div = document.getElementById("color_div");
+            var temp = true;
+            var main=document.getElementById("main");
+            var para = document.createElement("p")
+            button.addEventListener("click",() => {
+                if (temp == true){
+                    color_div.style.visibility="hidden";
+                    button.style.border="2px solid black";
+                    button.style.borderRadius = "10px";
+                    temp=false;
+                }
+                else{
+                    color_div.style.visibility="visible";
+                    button.style.border="none";
+                    button.style.borderRadius = "0px";
+                    temp=true;
+                }
+            })
+            color1.addEventListener("input",() =>{
+                body.style.background="linear-gradient(to right , "+ color1.value +", "+ color2.value +")";
+                para.innerText=color1.value+","+color2.value;
+                main.appendChild(para);
+            }
+            )
+            color2.addEventListener("input",function(){
+                body.style.background="linear-gradient(to right , " +color1.value +", "+color2.value+")";
+                para.innerText=color1.value+","+color2.value;
+                main.appendChild(para);
+            }
+            )
+            </script>
+    </body>
+</html>
